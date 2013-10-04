@@ -1,0 +1,11 @@
+/**
+* @desc         layout classes.
+* @name         layouts
+* @author       Anthony Munene
+* @tested       N/A
+* @requires     [ toolkit/_colours.scss ]
+*/
+body {
+	text-align: center;
+	counter-reset: section;
+}
