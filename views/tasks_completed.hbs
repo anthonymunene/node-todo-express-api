@@ -1,0 +1,30 @@
+<div class="menu">
+	<h2>Menu</h2>
+	<ul class="nav nav-pills">
+		<li>
+			<a href="/">Home</a>
+		</li>
+		<li><a href="/tasks">Todo List</a></li>
+		<li class="active"><a href="/tasks/completed">Completed</a></li>
+	</ul>
+	<h1>{{title}}</h1>
+	<div class="list">
+		<div class="item add-task">
+
+				{{#unless tasks.length}}
+					<p>No tasks</p>
+				{{/unless}}
+				{{#each tasks}}
+					<div class="item">
+						<div class="num">
+							<span>{{this.id}}</span>
+						</div>
+						<div class="name completed-task">
+							<span class="name">{{task.name}}</span>
+						</div>
+					</div>
+				{{/each}}
+
+		</div>
+	</div>
+</div>

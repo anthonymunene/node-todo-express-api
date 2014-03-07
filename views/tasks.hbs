@@ -1,0 +1,57 @@
+<div class="menu">
+	<h2>Menu</h2>
+	<ul class="nav nav-pills">
+		<li>
+			<a href="/">Home</a>
+		</li>
+		<li class="active"><a href="/tasks">Todo List</a></li>
+		<li><a href="/tasks/completed">Completed</a></li>
+	</ul>
+	<h1>{{title}}</h1>
+	<div class="list">
+		<div class="item add-task">
+			<div class="action">
+				<form action="/tasks" method="post">
+					<input type="hidden" value="true" name="all_done">
+					<input type="hidden" value="{{csrf}}" name="_csrf">
+					<input type="submit" value="all done" class="btn btn-success btn-xs">
+				</form>
+			</div>
+				<form action="/tasks" method="post">
+					<input type="hidden" value="{{csrf}}" name="_csrf">
+					<div class="name">
+						<input type="text" name="name" placeholder="Add a new task">
+					</div>
+					<div class="add">
+						<input type="submit" value="add" class="btn btn-primary btn-sm">
+					</div>
+
+				</form>
+				{{#unless tasks.length}}
+					<p class="item">No tasks</p>
+				{{/unless}}
+				{{#each tasks}}
+					<div class="item">
+						<div class="action">
+							<form action="/tasks/{{this._id}}" method="post">
+								<input type="hidden" value="{{this._id}}" name="id">
+								<input type="hidden" name="completed" value="true">
+								<input type="hidden" value="{{../csrf}}" name="_csrf">
+								<input type="submit" value="done" class="btn btn-success btn-xs task-done">
+							</form>
+						</div>
+						<div class="num">
+							<span>{{@index}}</span>
+						</div>
+						<div class="name">
+							<span class="name">
+								{{this.name}}
+							</span>
+						</div>
+						<div class="delete"><a  data-csrf="{{csrf}}" class="btn btn-danger btn-xs task-delete">delete</a></div>
+					</div>
+				{{/each}}
+
+		</div>
+	</div>
+</div>
